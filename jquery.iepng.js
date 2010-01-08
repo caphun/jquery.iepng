@@ -39,12 +39,21 @@ $.fn.iepng = function(options) {
 
 // iepng utility functions
 $.iepng = {
+	msfilter: function(png, sizing) {
+		return {filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''+ png +'\', sizingMethod=\''+ sizing +'\')'};
+	},
+	
 	// fix elements with png-source
 	fixAttr: function() {
 		var png = $(this).attr('src'),
-			sizing = 'crop';
-		
-		// TODO: implement a simplicistic solution
+			w = $(this).attr('width') || $(this).width(),
+			h = $(this).attr('height') || $(this).height(),
+			sizing = 'crop',
+			spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif';
+
+		$(this)
+			.attr({src: spacer, width: w, height: h})
+			.css($.iepng.msfilter(png, sizing));
 	},
 
 	// fix css background pngs
@@ -52,10 +61,11 @@ $.iepng = {
 		var png = $(this).css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1'),
 			sizing = 'crop';
 
-		$(this).css({
-			backgroundImage: 'none', 
-			filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''+ png +'\', sizingMethod=\''+ sizing +'\')'
-		});
+		$(this).css(
+			$.extend({
+				backgroundImage: 'none'
+			}, $.iepng.msfilter(png, sizing))
+		);
 	}
 }
 
