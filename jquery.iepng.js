@@ -49,9 +49,9 @@ $.iepng = {
 
 	// fix css background pngs
 	fixCss: function() {
-		var png = $(this).css('background-image').replace(/url\(([^\)]+)\)/i, '$1'),
+		var png = $(this).css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1'),
 			sizing = 'crop';
-		
+
 		$(this).css({
 			backgroundImage: 'none', 
 			filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''+ png +'\', sizingMethod=\''+ sizing +'\')'
