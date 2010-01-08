@@ -25,9 +25,9 @@ $.fn.iepng = function(options) {
 		// IE opacity is false and version must be under 7
 		if (!$.support.opacity && $.browser.version.substr(0,1) < 7) {
 			// determine which fix to apply for the current element if any
-			if (self.is('*[src$=.png]')) {
+			if (self.is('*[src]')) {
 				$.iepng.fixAttr.apply(this, arguments);
-			} else if (self.css('background-image').indexOf('.png')) {
+			} else if (self.css('background-image')) {
 				$.iepng.fixCss.apply(this, arguments);
 			}
 		}
@@ -45,23 +45,25 @@ $.iepng = {
 	
 	// fix elements with png-source
 	fixAttr: function() {
-		var png = $(this).attr('src'),
-			w = $(this).attr('width') || $(this).width(),
-			h = $(this).attr('height') || $(this).height(),
+		var self = $(this), 
+			png = self.attr('src'),
+			w = self.attr('width') || self.width(),
+			h = self.attr('height') || self.height(),
 			sizing = 'crop',
 			spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif';
 
-		$(this)
+		self
 			.attr({src: spacer, width: w, height: h})
 			.css($.iepng.msfilter(png, sizing));
 	},
 
 	// fix css background pngs
 	fixCss: function() {
-		var png = $(this).css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1'),
+		var self = $(this),
+			png = self.css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1'),
 			sizing = 'crop';
 
-		$(this).css(
+		self.css(
 			$.extend({
 				backgroundImage: 'none'
 			}, $.iepng.msfilter(png, sizing))
