@@ -1,0 +1,20 @@
+IE PNG Transparency Fix
+=======================
+
+OK, I know this is yet another png fix thingy but I wasn't too happy with the others 
+that were hiding on jQuery due to the fact there was a bit too much code for my liking.
+
+The idea with this one is to keep it simple and as slim as possible. I'm still trying 
+to slim this down. :)
+
+I'm not doing any detection of whether the image element or css background ends with a 
+.png or whether it's -trans.png. That I think is a decision the developer using this
+plugin should make and is easy to target specific PNG's in a document with jQuery.
+
+NOTE: The spacer image I'm using is loaded directly from
+
+http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif
+
+If anyone know's of a spacer on a reliable CDN I'd like to know. :)
+
+Enjoy!
