@@ -42,7 +42,10 @@ $.fn.iepng = function(options) {
 // iepng utility functions
 $.iepng = {
 	msfilter: function(png, sizing) {
-		return {filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''+ png +'\', sizingMethod=\''+ sizing +'\')'};
+		return {
+			backgroundImage: 'none', 
+			filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''+ png +'\', sizingMethod=\''+ sizing +'\')'
+		};
 	},
 	
 	// fix elements with png-source
@@ -51,7 +54,7 @@ $.iepng = {
 			png = self.attr('src'),
 			w = self.attr('width') || self.width(),
 			h = self.attr('height') || self.height();
-
+		
 		self
 			.attr({src: o.spacer, width: w, height: h})
 			.css($.iepng.msfilter(png, o.sizing));
@@ -61,12 +64,8 @@ $.iepng = {
 	fixCss: function(o) {
 		var self = $(this),
 			png = self.css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1');
-
-		self.css(
-			$.extend({
-				backgroundImage: 'none'
-			}, $.iepng.msfilter(png, o.sizing))
-		);
+		
+		self.css($.iepng.msfilter(png, o.sizing));
 	}
 }
 
