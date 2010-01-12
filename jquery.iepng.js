@@ -27,11 +27,11 @@ $.fn.iepng = function(options) {
 		// IE opacity is false and version must be under 7
 		if (!$.support.opacity && $.browser.version.substr(0,1) < 7) {
 			// determine which fix to apply for the current element if any
-			if (self.is('*[src]')) {
-				$.iepng.fixAttr.apply(this, [options]);
-			} else if (self.css('background-image')) {
-				$.iepng.fixCss.apply(this, [options]);
-			}
+			self.is('*[src]')
+				? $.iepng.fixAttr.apply(this, [options])
+				: self.css('background-image')
+					? $.iepng.fixCss.apply(this, [options])
+					: false;
 		}
 		
 		// return jQuery object
