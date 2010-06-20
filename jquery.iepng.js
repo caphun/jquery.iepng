@@ -27,9 +27,7 @@ $.fn.iepng = function( options ) {
                     backgroundImage: "none", 
                     filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + 
                         ($self[0].src || $self.css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1')) + 
-                        "', sizingMethod='"+ 
-                        ( sizing ) + 
-                        "')"
+                        "', sizingMethod='" + sizing + "')"
                 })
                 .filter('[src]')
                     .attr({ 'src': spacer, 'width': w, 'height': h });
