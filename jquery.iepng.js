@@ -14,7 +14,7 @@
 (function($) {
 
 var spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif',
-    sizing = 'scale';
+    sizing = 'scale', regex = /url\(\u0022([^\)]+)\u0022\)/i;
 
 $.fn.iepng = function( options ) {
     return this.each( function() {
@@ -24,10 +24,10 @@ $.fn.iepng = function( options ) {
 
         ie6 ?
             $self
-                .css({ 
+                .css({
                     backgroundImage: "none", 
                     filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + 
-                        ($self[0].src || $self.css('background-image').replace(/url\(\u0022([^\)]+)\u0022\)/i, '$1')) + 
+                        ($self[0].src || $self.css('background-image').replace(regex, '$1')) + 
                         "', sizingMethod='" + sizing + "')"
                 })
                 .filter('[src]')
