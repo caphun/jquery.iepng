@@ -14,14 +14,14 @@
 (function($) {
 
 var defaults = { spacer: 'http://bit.ly/iepng-spacer', sizing: 'scale' },
-	regex = /url\(\u0022([^\)]+)\u0022\)/i;
+    regex = /url\(\u0022([^\)]+)\u0022\)/i;
 
 $.fn.iepng = function( options ) {
     return this.each( function() {
 
         var $self = $( this ), w = $self.width(), h = $self.height(), 
             ie6 = (!$.support.opacity && $.browser.version.substr(0,1) < 7),
-			o = $.extend({}, defaults, options);
+            o = $.extend({}, defaults, options);
 
         ie6 ?
             $self
