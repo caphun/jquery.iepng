@@ -13,7 +13,7 @@
 
 (function($) {
 
-var defaults = { spacer: 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif', sizing: 'scale' },
+var defaults = { spacer: 'http://bit.ly/iepng-spacer', sizing: 'scale' },
 	regex = /url\(\u0022([^\)]+)\u0022\)/i;
 
 $.fn.iepng = function( options ) {
