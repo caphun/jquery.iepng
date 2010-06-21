@@ -13,14 +13,15 @@
 
 (function($) {
 
-var spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif', sizing = 'scale',
+var defaults = { spacer: 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif', sizing: 'scale' },
 	regex = /url\(\u0022([^\)]+)\u0022\)/i;
 
 $.fn.iepng = function( options ) {
     return this.each( function() {
 
         var $self = $( this ), w = $self.width(), h = $self.height(), 
-            ie6 = (!$.support.opacity && $.browser.version.substr(0,1) < 7);
+            ie6 = (!$.support.opacity && $.browser.version.substr(0,1) < 7),
+			o = $.extend({}, defaults, options);
 
         ie6 ?
             $self
@@ -28,10 +29,10 @@ $.fn.iepng = function( options ) {
                     backgroundImage: "none", 
                     filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + 
                         ($self[0].src || $self.css('background-image').replace(regex, '$1')) + 
-                        "', sizingMethod='" + sizing + "')"
+                        "', sizingMethod='" + o.sizing + "')"
                 })
                 .filter('[src]')
-                    .attr({ 'src': spacer, 'width': w, 'height': h }) : false;
+                    .attr({ 'src': o.spacer, 'width': w, 'height': h }) : false;
 
     });
 }
