@@ -13,8 +13,8 @@
 
 (function($) {
 
-var spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif',
-    sizing = 'scale', regex = /url\(\u0022([^\)]+)\u0022\)/i;
+var spacer = 'http://upload.wikimedia.org/wikipedia/commons/5/52/Spacer.gif', sizing = 'scale',
+	regex = /url\(\u0022([^\)]+)\u0022\)/i;
 
 $.fn.iepng = function( options ) {
     return this.each( function() {
@@ -33,7 +33,6 @@ $.fn.iepng = function( options ) {
                 .filter('[src]')
                     .attr({ 'src': spacer, 'width': w, 'height': h }) : false;
 
-        }
     });
 }
 
