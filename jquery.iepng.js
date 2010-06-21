@@ -1,7 +1,7 @@
 /**
  * jQuery IEPNG
  *
- * Copyright (c) 2009 Ca-Phun Ung <caphun at yelotofu dot com>
+ * Copyright (c) 2010 Ca-Phun Ung <caphun at yelotofu dot com>
  * Licensed under the MIT (MIT-LICENSE.txt) license.
  *
  * http://github.com/caphun/jquery.iepng
